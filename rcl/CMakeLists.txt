@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(rcl)
 
 find_package(ament_cmake_ros REQUIRED)
+find_package(ament_cmake_gen_version_h REQUIRED)
 
 find_package(libyaml_vendor REQUIRED)
 find_package(rcl_interfaces REQUIRED)
@@ -41,7 +42,9 @@ set(${PROJECT_NAME}_sources
   src/rcl/client.c
   src/rcl/common.c
   src/rcl/context.c
+  src/rcl/discovery_options.c
   src/rcl/domain_id.c
+  src/rcl/dynamic_message_type_support.c
   src/rcl/event.c
   src/rcl/expand_topic_name.c
   src/rcl/graph.c
@@ -50,13 +53,13 @@ set(${PROJECT_NAME}_sources
   src/rcl/init_options.c
   src/rcl/lexer.c
   src/rcl/lexer_lookahead.c
-  src/rcl/localhost.c
   src/rcl/logging_rosout.c
   src/rcl/logging.c
   src/rcl/log_level.c
   src/rcl/network_flow_endpoints.c
   src/rcl/node.c
   src/rcl/node_options.c
+  src/rcl/node_type_cache.c
   src/rcl/publisher.c
   src/rcl/remap.c
   src/rcl/node_resolve_name.c
@@ -68,6 +71,7 @@ set(${PROJECT_NAME}_sources
   src/rcl/time.c
   src/rcl/timer.c
   src/rcl/type_hash.c
+  src/rcl/type_description_conversions.c
   src/rcl/validate_enclave_name.c
   src/rcl/validate_topic_name.c
   src/rcl/wait.c
@@ -97,6 +101,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   tracetools::tracetools
   yaml
 )
+
+# Allow configuring the default discovery range
+if(DEFINED RCL_DEFAULT_DISCOVERY_RANGE)
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+  "RCL_DEFAULT_DISCOVERY_RANGE=${RCL_DEFAULT_DISCOVERY_RANGE}")
+endif()
 
 # Causes the visibility macros to use dllexport rather than dllimport,
 # which is appropriate when building the dll but not consuming it.
@@ -137,6 +147,7 @@ ament_export_dependencies(rmw)
 ament_export_dependencies(rmw_implementation)
 ament_export_dependencies(rosidl_runtime_c)
 ament_export_dependencies(type_description_interfaces)
+ament_generate_version_header(${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

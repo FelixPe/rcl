@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(rcl_yaml_param_parser)
 
 find_package(ament_cmake_ros REQUIRED)
+find_package(ament_cmake_gen_version_h REQUIRED)
 find_package(rcutils REQUIRED)
 find_package(rmw REQUIRED)
 find_package(libyaml_vendor REQUIRED)
@@ -114,6 +115,7 @@ if(BUILD_TESTING)
     test/test_parse.cpp
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
   )
+  ament_add_test_label(test_parse mimick)
   if(TARGET test_parse)
     target_link_libraries(test_parse
       ${PROJECT_NAME}
@@ -128,6 +130,7 @@ if(BUILD_TESTING)
     test/test_parser.cpp
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
   )
+  ament_add_test_label(test_parser mimick)
   if(TARGET test_parser)
     target_link_libraries(test_parser
       ${PROJECT_NAME}
@@ -144,6 +147,7 @@ if(BUILD_TESTING)
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
     TIMEOUT 240  # Large timeout to wait for fault injection tests
   )
+  ament_add_test_label(test_parser_multiple_nodes mimick)
   if(TARGET test_parser_multiple_nodes)
     target_link_libraries(test_parser_multiple_nodes
       ${PROJECT_NAME}
@@ -158,6 +162,7 @@ if(BUILD_TESTING)
     test/test_parser_multiple_params.cpp
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
   )
+  ament_add_test_label(test_parser_multiple_params mimick)
   if(TARGET test_parser_multiple_params)
     target_link_libraries(test_parser_multiple_params
       ${PROJECT_NAME}
@@ -186,7 +191,6 @@ if(BUILD_TESTING)
     target_link_libraries(benchmark_parse_yaml
       ${PROJECT_NAME}
       performance_test_fixture::performance_test_fixture
-      rcpputils::rcpputils
       rcutils::rcutils
     )
   endif()
@@ -210,6 +214,8 @@ ament_export_libraries(${PROJECT_NAME})
 ament_export_targets(${PROJECT_NAME})
 
 ament_export_dependencies(ament_cmake rcutils)
+
+ament_generate_version_header(${PROJECT_NAME})
 
 install(
   DIRECTORY include/

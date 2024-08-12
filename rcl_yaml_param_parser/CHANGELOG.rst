@@ -2,6 +2,75 @@
 Changelog for package rcl_yaml_param_parser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+9.4.1 (2024-07-29)
+------------------
+
+9.4.0 (2024-06-17)
+------------------
+* Add 'mimick' label to tests which use Mimick (`#1152 <https://github.com/ros2/rcl/issues/1152>`_)
+* Contributors: Scott K Logan
+
+9.3.0 (2024-04-26)
+------------------
+
+9.2.1 (2024-04-16)
+------------------
+* Generate version header using ament_generate_version_header(..) (`#1141 <https://github.com/ros2/rcl/issues/1141>`_)
+* Contributors: G.A. vd. Hoorn
+
+9.2.0 (2024-03-28)
+------------------
+* Update quality declaration documents (`#1131 <https://github.com/ros2/rcl/issues/1131>`_)
+* Contributors: Christophe Bedard
+
+9.1.0 (2024-01-24)
+------------------
+
+9.0.0 (2023-12-26)
+------------------
+* Fix for incorrect integer value conversion on Windows (`#1126 <https://github.com/ros2/rcl/issues/1126>`_)
+* Contributors: Michael Orlov
+
+8.0.0 (2023-11-06)
+------------------
+
+7.3.0 (2023-10-09)
+------------------
+
+7.2.0 (2023-10-04)
+------------------
+* Just remove rcpputils::fs dependency (`#1105 <https://github.com/ros2/rcl/issues/1105>`_)
+* Contributors: Kenta Yonekura
+
+7.1.1 (2023-09-07)
+------------------
+
+7.1.0 (2023-08-21)
+------------------
+
+7.0.0 (2023-07-11)
+------------------
+
+6.3.0 (2023-06-12)
+------------------
+
+6.2.0 (2023-06-07)
+------------------
+
+6.1.1 (2023-05-11)
+------------------
+
+6.1.0 (2023-04-28)
+------------------
+
+6.0.1 (2023-04-18)
+------------------
+
+6.0.0 (2023-04-12)
+------------------
+* Fix some warnings from clang. (`#1042 <https://github.com/ros2/rcl/issues/1042>`_)
+* Contributors: Chris Lalancette
+
 5.9.0 (2023-03-01)
 ------------------
 
